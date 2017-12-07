@@ -1,0 +1,94 @@
+<%- include layouts/header.ejs %>
+<%- include layouts/leftside.ejs %>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+        Add Customer
+        </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+            
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" action="/customers/add" encType="multipart/form-data" method="POST">
+                <div class="box-body col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputName1">Name</label>
+                        <input type="text" name="name" class="form-control" id="exampleInputName1" placeholder="Enter Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputName1">Address</label>
+                        <textarea class="form-control" name="address" rows="3" placeholder="Address here..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPhone1">Phone</label>
+                        <input type="text" name="phone" class="form-control" id="exampleInputPhone1" placeholder="Phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputFile">File input</label>
+                        <input type="file" name="imageName" id="exampleInputFile">
+                    </div>
+                    <!-- <div class="checkbox">
+                        <label>
+                        <input type="checkbox"> Check me out
+                        </label>
+                    </div> -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-default" href="/customers">Cancel</a>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                </div>
+            </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- <div class="page-data">
+    <form method="post" action="/customers/add">
+        <table cellpadding="11">
+        
+            <td class="label">Phone</td><td>: <input type="text" name="phone" required></td>
+            </tr>
+            <tr>
+            <td class="label"></td>
+            <td>
+                &nbsp; <input type="submit" name="submit" value="Save">
+                <input type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelAdd()">
+            </td>
+            </tr>
+        </table>
+    </form>
+</div>  --> 
+<%- include layouts/footer.ejs %>

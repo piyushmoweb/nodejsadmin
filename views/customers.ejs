@@ -1,0 +1,112 @@
+<%- include layouts/header.ejs %>
+<%- include layouts/leftside.ejs %>
+<script src="/../popupS/dist/popupS.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/../popupS/css/popupS.min.css">
+
+<script type="text/javascript">
+function recordDelete(id){
+    popupS.confirm({
+        content: 'Are you sure want to delete this record?',
+        onSubmit: function() {
+            window.location.href = '/customers/delete/'+id;        
+        }
+    });
+    /* console.log(id);
+    window.location.href = '/customers/delete/'+id; */
+}
+</script>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    <h1>
+    Customers
+    </h1>
+
+    <ol class="breadcrumb" style="padding: 0 5px;">
+    <a href="/customers/add" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add Customer</a>
+    </ol>
+    </section>
+    
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+        <div class="col-xs-12">
+            <% if(msg == 'success'){ %>
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Customer added successfully.
+            </div>
+            <% }else if(msg == 'failed'){ %>
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Sorry, Customer details not added success. Please try again.
+            </div>
+            <% }else if(msg == 'delete'){ %>
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Customer deleted successfully.
+            </div>
+            <% }else if(msg == 'update_success'){ %>
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Customer updated successfully.
+            </div>
+            <% } %>
+            
+            <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="customers" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(var i = 0;i < data.length;i++) { %>
+                <tr id="<%=data[i].id%>">
+                    <td>
+                        <% if(data[i].imageName != '') {%>
+                        <a class="fancybox" data-fancybox-group="gallery" href="<%=imgpath%>/public/images/<%=data[i].imageName%>">
+                            <img src="<%=imgpath%>/public/images/<%=data[i].imageName%>" alt="" width="50" height="50" />
+                        </a>
+                        <%}%>
+                    </td>
+                    <td><%=data[i].name%></td>
+                    <td><%=data[i].address%></td>
+                    <td><%=data[i].phone%></td>
+                    <td><%=data[i].email%></td>
+                    <td>
+                        <a class="btn btn-primary btn-xs edit" href="../customers/edit/<%=data[i].id%>" title="Edit Customer"><i class="fa fa-pencil"></i></a> | 
+                        <a class="btn btn-danger btn-xs" href="#" onclick="recordDelete('<%=data[i].id%>')" title="Delete Customer"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+                <% } %>
+                </tfoot>
+                </table>
+            </div>
+            <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 4000);
+</script>
+<%- include layouts/footer.ejs %>
